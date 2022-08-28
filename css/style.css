@@ -1028,7 +1028,7 @@ a{
 
 section.login{
     height: 100vh;
-    background-image: url(/images/background.jpg);
+    background-image: url(../images/background.jpg);
         background-size: cover;
         text-align: center;
 }
@@ -1220,6 +1220,7 @@ color:var(--main-color)
 .contact-us form button{
     height: 40px;
     border:none;
+    width:90%;
     border-radius: 5px;
     background-color: var(--main-color);
     -webkit-border-radius: 5px;
@@ -1375,7 +1376,7 @@ color:var(--main-color)
     background-color:#283618d5
 }
 .change-color ul li:nth-child(2){
-    background-color:rgba(0, 0, 255, 0.822)
+    background-color:#800080
 }
 .change-color ul li:nth-child(3){
     background-color: rgba(0, 0, 0, 0.719)
@@ -1384,7 +1385,7 @@ color:var(--main-color)
     background-color: rgba(0, 128, 0, 0.76);
 }
 .change-color ul li:last-child{
-    background-color: #ec3fc9cb;
+    background-color: #5c575bcb;
 }
 /* arrow up */
 .arrow-up .fa-arrow-up{
