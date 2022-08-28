@@ -55,7 +55,7 @@ let getData = async function (url) {
     container.innerHTML = `<h3> error during fetch data</h3>`;
   }
 };
-getData("/src/items.json");
+getData("src/items.json");
 
 function addItems(data) {
   if (data.length < 1) {
