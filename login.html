@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,800;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <title>log in</title>
+</head>
+
+<body>
+    <div class="loader-container">
+        <div id="loader" class="center"></div>
+    </div>
+    <div class="change-color">
+        <i class="fa fa-gear"></i>
+        <h4> change theme</h4>
+        <ul>
+            <li data-color="#283618d5"></li>
+            <li data-color="rgba(0, 0, 255, 0.822)"></li>
+            <li data-color="rgba(0, 0, 0, 0.719)"></li>
+            <li data-color="rgba(0, 128, 0, 0.76)"></li>
+            <li data-color="#ec3fc9cb"></li>
+        </ul>
+    </div>
+    <div class="header">
+        <a href="index.html">
+            <div class="logo">
+                <img src="/images/logo.png" alt="logo">
+                <span class="title">zizmon</span>
+            </div>
+        </a>
+        <nav>
+            <div class="contact-us">
+                <span class="customer-number">customer number:0128787878</span>
+                <a href="mailto:name@rapidtables.com">zizmon@gmail.com</a>
+            </div>
+            <a href="login.html">
+                <div class="login">
+                    <span class="log">login / </span>
+                    <span class="register">register</span>
+                </div>
+            </a>
+            <div class="basket">
+                <a href="#">
+                    <div class="basket-container"></div>
+                    <i class="fa fa-cart-shopping fa-2x">
+                        <span class="basket-counter">0</span>
+                    </i>
+                </a>
+            </div>
+            <div class="toggle">
+                <i class="fa fa-bars fa-2x"></i>
+                <ul class="menu">
+                    <a href="/index.html" class="home">home</a>
+                    <a href="products.html" class="products">All Products</a>
+                    <span class="close">x</span>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <section class="login">
+        <div class="container">
+            <form action="index.html" class="login-from">
+                <input type="email" id="email" placeholder="type your email">
+                <label for="email" class="email-error">please enter valid email</label>
+                <input type="password" id="password" placeholder="type password ">
+                <label for="password" class="password-error">please enter valid password</label>
+                <input type="submit" class="submit" id="submit" value="log in">
+                <div class="social-login">
+                    <div class="facebook">
+                        <i class="fa fa-facebook"></i>
+                        <span>login with facebook account</span>
+                    </div>
+                    <div class="github">
+                        <i class="fa fa-github"></i>
+                        <span>login with Github account</span>
+                    </div>
+                    <div class="google">
+                        <i class="fa fa-google"></i>
+                        <span>login with Google account</span>
+                    </div>
+                </div>
+                <a class="forget" href="#">forget password?</a>
+                <div class="para">if you dont have an acount <br /> <a href="#" class="sign-up"> sign up</a></div>
+            </form>
+            <form action="login.html" class="signUp">
+                <input type="email" class="email" id="email2" placeholder="email">
+                <label for="email2" class="email-label" style="color:red; font-size:14px; display:none" >wrong email </label>
+                <input type="text" id="username" class="username" placeholder="username">
+                <label for="username" class="username-label" style="color:red; font-size:14px ;display:none"> this username not available </label>
+                <input type="password" id="password2" class="password" id="password" placeholder="password">
+                <label for="password2" class="password-label" style="color:red; font-size:14px;display:none"> password must contain uppercase and lowercase and number</label>
+                <input type="password" id="repeat-password" class="repeat-password" id="repeat-password" placeholder="repeat-password">
+                <label for="repeat-password" class="repeat-password-label" style="color:red; font-size:14px ;display:none"> password not matched</label>
+                <input type="submit" class="sign-up" value="sign up">
+                <a href="#" class="log-in"> you already have account ? <span>login from here</span></a>
+            </form>
+        </div>
+    </section>
+    <script type="module" src="src/login.js"></script>
+</body>
+</html>

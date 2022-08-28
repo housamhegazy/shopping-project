@@ -1,0 +1,108 @@
+
+  [
+    {
+    "company":"nike",
+    "id": "111111",
+    "imgSrc": "images/p1.png",
+    "price": 100,
+    "name": "Wristwatch"
+  },
+  {
+    "company":"adidas",
+    "id": "121212",
+    "imgSrc": "images/p2.png",
+    "price": 200,
+    "name": " wall watch"
+  },
+  {
+    "company":"skitchers",
+    "id": "222222",
+    "imgSrc": "images/p3.png",
+    "price": 100,
+    "name": "shoes"
+  },
+  {
+    "company":"nike",
+    "id": "333333",
+    "imgSrc": "images/p4.png",
+    "price": 50,
+    "name": "fan"
+  },
+  {
+    "company":"nike",
+    "id": "444444",
+    "imgSrc": "images/p5.png",
+    "price": 80,
+    "name": "clock"
+  },
+  {
+    "company":"adidas",
+    "id": "555555",
+    "imgSrc": "images/p6.png",
+    "price": 100,
+    "name": "glass"
+  },
+  {
+    "company":"adidas",
+    "id": "666666",
+    "imgSrc": "images/p7.png",
+    "price": 100,
+    "name": "shoes"
+  },
+  {
+    "company":"skitchers",
+    "id": "777777",
+    "imgSrc": "images/p8.png",
+    "price": 100,
+    "name": "bag"
+  },
+  {
+    "company":"nike",
+    "id": "888888",
+    "imgSrc": "images/p9.png",
+    "price": 100,
+    "name": "bag"
+  },
+  {
+    "company":"adidas",
+    "id": "999999",
+    "imgSrc": "images/p10.png",
+    "price": 100,
+    "name": "clock"
+  },
+  {
+    "company":"skitchers",
+    "id": "101010",
+    "imgSrc": "images/p11.png",
+    "price": 100,
+    "name": "shoes"
+  },
+  {
+    "company":"Aldo",
+    "id": "101010",
+    "imgSrc": "images/p11.png",
+    "price": 100,
+    "name": "shoes"
+  },
+  {
+    "company":"Aldo",
+    "id": "101010",
+    "imgSrc": "images/p6.png",
+    "price": 100,
+    "name": "shoes fo home"
+  },
+  {
+    "company":"LEVIS",
+    "id": "101010",
+    "imgSrc": "images/p3.png",
+    "price": 100,
+    "name": "shoes"
+  },
+  {
+    "company":"Converse",
+    "id": "101010",
+    "imgSrc": "images/p10.png",
+    "price": 100,
+    "name": "shoes"
+  }
+]
