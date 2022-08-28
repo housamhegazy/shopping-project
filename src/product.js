@@ -177,7 +177,7 @@ function searchForItem(data) {
       container.innerHTML = `<h3> error during fetch data</h3>`;
     }
   };
-  getData("/src/items.json");
+  getData("src/items.json");
 }
 searchForItem();
 
