@@ -138,6 +138,13 @@ a{
     justify-content: space-between;
     align-items: center;
 }
+@media(max-width:991px){
+    .header nav {
+            flex: .75;
+            justify-content: space-between;
+            align-items: center;
+        }
+}
 .header nav .contact-us > span{
     padding: 0 10px;
     color: #800080;
