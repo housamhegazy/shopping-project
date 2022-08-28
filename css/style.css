@@ -89,6 +89,7 @@ a{
     height: 80px;
     display:flex;
     width:100%;
+    justify-content: space-between;
     align-items: center;
     padding:5px 5px;
     z-index: 2;
@@ -131,9 +132,9 @@ a{
     }
 }
 .header nav{
-    flex: 1;
     color:var(--products-back);
     display:flex;
+    flex:.5;
     justify-content: space-between;
     align-items: center;
 }
@@ -1049,7 +1050,11 @@ section.login .login-from{
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-
+}
+@media(max-width:767px){
+    section.login .login-from{
+        width:300px;
+    }
 }
  section.login .login-from input{
     background-color: transparent;
