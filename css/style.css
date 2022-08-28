@@ -788,7 +788,7 @@ a{
 /* ===== */
 .grouped{
     height: 450px;
-    background-color: #6d6464;
+    background-color:#857f83;
 }
 .grouped .container{
     height: 100%;
@@ -1149,6 +1149,11 @@ section.login .login-from input.submit:hover{
     -o-border-radius: 10px;
     display: none
 }
+@media(max-width:767px){
+    .login .signUp{
+        width:300px
+    }
+}
 .login .signUp input {
      background-color: transparent;
      padding: 10px;
@@ -1257,7 +1262,7 @@ color:var(--main-color)
 }
 @media(max-width:991px){
     .footer-info .container{
-
+        padding:20px;
     }
 }
 .footer-info .box{
@@ -1301,6 +1306,7 @@ color:var(--main-color)
 .footer-info .box .links li a{
     padding: 5px 0;
     display: block;
+    font-size: 14px;
 }
 .footer-info .box .links li:hover{
     transform: translateX(10px);
@@ -1432,8 +1438,8 @@ color:var(--main-color)
 }
 
 footer{
-    background-color: #6c757d;
-    color:white;
+    background-color:#FFC531;
+    color:#800080;
     text-align: center;
     padding:10px 0;
 }

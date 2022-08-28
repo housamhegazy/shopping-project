@@ -207,7 +207,6 @@ function verifyData(event) {
   } else {
     retypePassLabel.style.display = "none";
     retypePass.style.border = "1px solid white";
-    alert("your sign up completed , you need to log in ");
   }
 }
 
