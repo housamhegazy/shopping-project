@@ -105,15 +105,15 @@ function validate() {
     upEmailError.textContent = "email cant be empty";
     upEmailError.style.display = "block";
     return;
-  } else if (upEmail.value.length < 7) {
+  } else if (upEmail.value.length < 6) {
     upEmail.focus();
-    upEmailError.textContent = "must be more than 20 charachter";
+    upEmailError.textContent = "must be more than 6 charachter";
     upEmailError.style.display = "block";
     upEmail.style.border = "1px solid red";
     return;
   } else {
     upEmailError.style.display = "none";
-    upEmail.style.border = "1px solid white";
+    upEmail.style.border = "1px solid #800080";
   }
   //username
   if (upUserName.value === "") {
@@ -121,15 +121,15 @@ function validate() {
     upUserNameLabel.textContent = "username cant be empty";
     upUserNameLabel.style.display = "block";
     return;
-  } else if (upUserName.value.length < 9) {
+  } else if (upUserName.value.length < 6) {
     upUserName.focus();
-    upUserNameLabel.textContent = "must be more than 10 character";
+    upUserNameLabel.textContent = "must be more than 6 character";
     upUserNameLabel.style.display = "block";
     upUserName.style.border = "1px solid red";
     return;
   } else {
     upUserNameLabel.style.display = "none";
-    upUserName.style.border = "1px solid white";
+    upUserName.style.border = "1px solid #800080";
   }
   //password
   if (upPassword.value === "") {
@@ -139,13 +139,13 @@ function validate() {
     return;
   } else if (upPassword.value.length < 6) {
     upPassword.focus();
-    upPasswordLabel.textContent = "must be more than 9 character";
+    upPasswordLabel.textContent = "must be more than 6 character";
     upPasswordLabel.style.display = "block";
     upPassword.style.border = "1px solid red";
     return;
   } else {
     upPasswordLabel.style.display = "none";
-    upPassword.style.border = "1px solid white";
+    upPassword.style.border = "1px solid #800080";
   }
   //repeat password
   if (retypePass.value === "") {
@@ -161,7 +161,7 @@ function validate() {
     return;
   } else {
     retypePassLabel.style.display = "none";
-    retypePass.style.border = "1px solid white";
+    retypePass.style.border = "1px solid #800080";
   }
   //send all data to array
   sendToArray();
@@ -177,7 +177,9 @@ function sendToArray() {
     signUpData.push(data);
     sendToLocalStorage(signUpData);
   } else {
-    let EmailIndex = signUpData.findIndex(object=> object.userEmail === data.userEmail);
+    let EmailIndex = signUpData.findIndex(
+      (object) => object.userEmail === data.userEmail
+    );
     if (EmailIndex === -1) {
       signUpData.push(data);
       sendToLocalStorage(signUpData);
@@ -190,4 +192,5 @@ function sendToArray() {
 // send data to local storage
 function sendToLocalStorage(signUpData) {
   localStorage.setItem("signUpDataArr", JSON.stringify(signUpData));
+  document.querySelector(".result").style.display = "block";
 }

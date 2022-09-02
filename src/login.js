@@ -156,7 +156,7 @@ function validate(e) {
 }
 
 function email_verify() {
-  if (email.value.length < 9) {
+  if (email.value.length < 6) {
     errorEmail.style.display = "block";
     email.style.border = "1px solid red";
   } else {
@@ -165,7 +165,7 @@ function email_verify() {
   }
 }
 function pass_verify() {
-  if (password.value.length < 9) {
+  if (password.value.length < 6) {
     errorPass.style.display = "block";
     password.style.border = "1px solid red";
   } else {
