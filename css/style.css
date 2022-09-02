@@ -178,19 +178,21 @@ a{
     cursor: pointer;
     color: #800080;
 }
+
 .header nav .toggle{
     margin-right: 20px;
 }
 .header nav form input{
-    width:100px;
+    width:80px;
     height:30px;
-    border-radius: 5px;
+    border-radius: 30px;
     padding: 3px;
     border:none;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    margin:4px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
     transition: .5s;
     -webkit-transition: .5s;
     -moz-transition: .5s;
@@ -200,6 +202,7 @@ a{
 
 .header nav .search input:focus{
     outline: none;
+    width:100px
 }
 .header nav .toggle .fa-bars{
     transition: .5s;
@@ -1147,7 +1150,6 @@ section.login .login-from input.submit:hover{
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
-    display: none
 }
 @media(max-width:767px){
     .login .signUp{

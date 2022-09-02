@@ -1,7 +1,24 @@
+// loader
+document.onreadystatechange = function () {
+  if (document.readyState !== "complete") {
+    document.querySelector("body").style.visibility = "hidden";
+    document.querySelector(".loader-container").style.visibility = "visible";
+  } else {
+    document.querySelector(".loader-container").style.display = "none";
+    document.querySelector("body").style.visibility = "visible";
+  }
+};
+
 let toggleBtn = document.querySelector(".toggle .fa-bars");
 let closeBtn = document.querySelector(".toggle .close");
 let menu = document.querySelector(".menu");
 let menuItems = document.querySelectorAll(".menu a");
+//===============================================
+//get from local storage
+let signUpData = [];
+signUpData = JSON.parse(localStorage.getItem("signUpDataArr")) || [];
+//===============================
+//=================================
 // open and close toggle
 function sideBarMenu() {
   document.addEventListener("click", (e) => {
@@ -57,17 +74,6 @@ if (localStorage.getItem("color")) {
   });
 }
 
-// loader
-document.onreadystatechange = function () {
-  if (document.readyState !== "complete") {
-    document.querySelector("body").style.visibility = "hidden";
-    document.querySelector(".loader-container").style.visibility = "visible";
-  } else {
-    document.querySelector(".loader-container").style.display = "none";
-    document.querySelector("body").style.visibility = "visible";
-  }
-};
-
 // forms elements
 //1-log in elements
 let logInForm = document.querySelector(".login .login-from");
@@ -75,7 +81,7 @@ let email = document.querySelector(".login .login-from #email");
 let password = document.querySelector(".login .login-from #password");
 let errorEmail = document.querySelector(".login .login-from .email-error");
 let errorPass = document.querySelector(".login .login-from .password-error");
-let signUpLink = document.querySelector(".login .login-from .para .sign-up");
+// let signUpLink = document.querySelector(".login .login-from .para .sign-up");
 // 2- sign up elements
 let signUpForm = document.querySelector(".login .signUp");
 let upEmail = document.querySelector(".login .signUp .email");
@@ -88,55 +94,63 @@ let retypePass = document.querySelector(".login .signUp .repeat-password");
 let retypePassLabel = document.querySelector(
   ".login .signUp .repeat-password-label"
 );
-let SignUpBtn = document.querySelector(".login .signUp .sign-up");
-let logInInLink = document.querySelector(".login .signUp a");
+// let SignUpBtn = document.querySelector(".login .signUp .sign-up");
+// let logInInLink = document.querySelector(".login .signUp a");
 
-// change between sign up and login form
-signUpLink.onclick = () => {
-  removeLoginForm();
-};
-logInInLink.onclick = () => {
-  removeSignUpForm();
-};
-function removeLoginForm() {
-  logInForm.style.display = "none";
-  signUpForm.style.display = "flex";
-}
-function removeSignUpForm() {
-  logInForm.style.display = "flex";
-  signUpForm.style.display = "none";
-}
+// // change between sign up and login form
+// signUpLink.onclick = () => {
+//   removeLoginForm();
+// };
+// logInInLink.onclick = () => {
+//   removeSignUpForm();
+// };
+// function removeLoginForm() {
+//   logInForm.style.display = "none";
+//   signUpForm.style.display = "flex";
+// }
+// function removeSignUpForm() {
+//   logInForm.style.display = "flex";
+//   signUpForm.style.display = "none";
+// }
 
 /**
  * !authenticate email and password of log in form
  **/
 logInForm.addEventListener("submit", (e) => {
+  e.preventDefault()
   validate(e);
 });
 email.addEventListener("textInput", email_verify);
 password.addEventListener("textInput", pass_verify);
 
 function validate(e) {
-  if (email.value.length < 9) {
-    errorEmail.style.display = "block";
-    email.style.border = "1px solid red";
-    email.focus();
-    e.preventDefault();
-  } else {
-    errorEmail.style.display = "none";
-    email.style.border = "1px solid white";
-  }
-  if (password.value.length < 9) {
-    errorPass.style.display = "block";
-    password.style.border = "1px solid red";
-    password.focus();
-    e.preventDefault();
-  } else {
-    errorPass.style.display = "none";
-    password.style.border = "1px solid white";
-  }
+  signUpData.forEach((ele) => {
+     if (email.value !== ele.userEmail) {
+       errorEmail.textContent = "wrong email";
+       errorEmail.style.display = "block";
+       email.style.border = "1px solid red";
+       email.focus();
+       return;
+     } else {
+       errorEmail.style.display = "none";
+       email.style.border = "1px solid white";
+     }
+     if (password.value !== ele.userPassword) {
+       errorPass.textContent = "error password";
+       errorPass.style.display = "block";
+       password.style.border = "1px solid red";
+       password.focus();
+       return;
+     } else {
+       errorPass.style.display = "none";
+       password.style.border = "1px solid white";
+     }
+     window.location = "index.html";
+  });
+  
 }
 
+   
 function email_verify() {
   if (email.value.length < 9) {
     errorEmail.style.display = "block";
@@ -153,94 +167,5 @@ function pass_verify() {
   } else {
     errorPass.style.display = "none";
     password.style.border = "1px solid white";
-  }
-}
-
-/**
- * !authenticate email and password of sign up form
- **/
-signUpForm.addEventListener("submit", (event) => {
-  verifyData(event);
-});
-upEmail.addEventListener("textInput", verifyInput);
-upPassword.addEventListener("textInput", verifyInput);
-upUserName.addEventListener("textInput", verifyInput);
-retypePass.addEventListener("textInput", verifyInput);
-
-function verifyData(event) {
-  //email
-  if (upEmail.value.length < 9) {
-    upEmailError.style.display = "block";
-    upEmail.style.border = "1px solid red";
-    upEmail.focus();
-    event.preventDefault();
-  } else {
-    upEmailError.style.display = "none";
-    upEmail.style.border = "1px solid white";
-  }
-  //username
-  if (upUserName.value.length < 9) {
-    upUserNameLabel.style.display = "block";
-    upUserName.style.border = "1px solid red";
-    upUserName.focus();
-    event.preventDefault();
-  } else {
-    upUserNameLabel.style.display = "none";
-    upUserName.style.border = "1px solid white";
-  }
-  // password
-  if (upPassword.value.length < 9) {
-    upPasswordLabel.style.display = "block";
-    upPassword.style.border = "1px solid red";
-    upPassword.focus();
-    event.preventDefault();
-  } else {
-    upPasswordLabel.style.display = "none";
-    upPassword.style.border = "1px solid white";
-  }
-  // repeat pass
-  if (retypePass.value !== upPassword.value) {
-    retypePassLabel.style.display = "block";
-    retypePass.style.border = "1px solid red";
-    retypePass.focus();
-    event.preventDefault();
-  } else {
-    retypePassLabel.style.display = "none";
-    retypePass.style.border = "1px solid white";
-  }
-}
-
-function verifyInput() {
-  //email
-  if (upEmail.value.length < 9) {
-    upEmailError.style.display = "block";
-    upEmail.style.border = "1px solid red";
-  } else {
-    upEmailError.style.display = "none";
-    upEmail.style.border = "1px solid white";
-  }
-  //username
-  if (upUserName.value.length < 9) {
-    upUserNameLabel.style.display = "block";
-    upUserName.style.border = "1px solid red";
-  } else {
-    upUserNameLabel.style.display = "none";
-    upUserName.style.border = "1px solid white";
-  }
-  // password
-  if (upPassword.value.length < 9) {
-    upPasswordLabel.style.display = "block";
-    upPassword.style.border = "1px solid red";
-  } else {
-    upPasswordLabel.style.display = "none";
-    upPassword.style.border = "1px solid white";
-  }
-  // repeat pass
-  if (retypePass.value !== upPassword.value) {
-    retypePassLabel.style.display = "block";
-    retypePass.style.border = "1px solid red";
-  } else {
-    retypePassLabel.style.display = "none";
-    retypePass.style.border = "1px solid white";
   }
 }
