@@ -94,11 +94,11 @@ let SignUpBtn = document.querySelector(".login .signUp .sign-up");
  **/
 
 signUpForm.addEventListener("submit", (event) => {
-  validate(event);
+  validate();
 });
 
 //=================================================
-function validate(event) {
+function validate() {
   //email
   if (upEmail.value === "") {
     upEmail.focus();
@@ -163,10 +163,11 @@ function validate(event) {
     retypePassLabel.style.display = "none";
     retypePass.style.border = "1px solid white";
   }
-  sendToArray(event);
+  //send all data to array
+  sendToArray();
 }
 
-function sendToArray(event) {
+function sendToArray() {
   let data = {
     userEmail: upEmail.value,
     userUserName: upUserName.value,
@@ -176,25 +177,17 @@ function sendToArray(event) {
     signUpData.push(data);
     sendToLocalStorage(signUpData);
   } else {
-    signUpData.forEach((ele) => {
-      if (ele.userEmail === upEmail.value) {
-        upEmailError.textContent = "email registered before ,sign in";
-        upEmailError.style.display = "block";
-        event.preventDefault();
-      } else if (ele.userUserName === upUserName.value) {
-        upUserNameLabel.textContent = "this username is used before";
-        upUserNameLabel.style.display = "block";
-        event.preventDefault();
-      } else {
-        signUpData.push(data);
-        let element = signUpData[signUpData.length - 1];
-        sendToLocalStorage(signUpData);
-      }
-    });
+    let EmailIndex = signUpData.findIndex(object=> object.userEmail === data.userEmail);
+    if (EmailIndex === -1) {
+      signUpData.push(data);
+      sendToLocalStorage(signUpData);
+    } else {
+      upEmailError.textContent = "email registered before ,sign in";
+      upEmailError.style.display = "block";
+    }
   }
 }
 // send data to local storage
 function sendToLocalStorage(signUpData) {
-  localStorage.setItem("signUpDataArr", "[]");
   localStorage.setItem("signUpDataArr", JSON.stringify(signUpData));
 }

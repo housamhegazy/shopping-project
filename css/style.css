@@ -157,24 +157,9 @@ a{
         display: none;
     }
 }
-.header nav .login{
-    text-transform:capitalize;
-    font-size: 14px;
-    color: #800080;
-    font-weight: 600;
-}
-@media(max-width:991px){
-    .header nav .login{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-}
+
 .header nav .toggle,
-.header nav .search,
-.header nav .login .log,
-.header nav .login .register{
+.header nav .search{
     cursor: pointer;
     color: #800080;
 }
@@ -183,11 +168,12 @@ a{
     margin-right: 20px;
 }
 .header nav form input{
+    text-align: center;
+    border: 1px solid #800080;
     width:80px;
     height:30px;
     border-radius: 30px;
-    padding: 3px;
-    border:none;
+    padding: 5px;
     margin:4px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
@@ -199,10 +185,14 @@ a{
     -ms-transition: .5s;
     -o-transition: .5s;
 }
-
+.header nav form input::placeholder{
+    font-size: 12px;
+    
+}
 .header nav .search input:focus{
     outline: none;
-    width:100px
+    width:100px;
+    
 }
 .header nav .toggle .fa-bars{
     transition: .5s;
@@ -267,6 +257,20 @@ a{
     -moz-transform: translateX(0px);
     -ms-transform: translateX(0px);
     -o-transform: translateX(0px);
+}
+.menu .register {
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 600;
+}
+.menu .register a {
+    color: white;
+    padding: 7px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 .menu > a{
     width:70%;
@@ -716,20 +720,28 @@ a{
     height: 100%;
 }
 .new-products .product .full-screen .screen-container {
-    width: 50%;
+    width: 70%;
     height: 50%;
     position: absolute;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
     background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     -webkit-transform: translate(-50%,-50%);
     -moz-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     -o-transform: translate(-50%,-50%);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
 }
 .new-products .products .product .image .full-screen img{
-    width:40%;
+    width:70%;
     margin: auto;
 }
 .new-products .products .product .image .full-screen .close{

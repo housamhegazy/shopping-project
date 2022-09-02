@@ -117,40 +117,44 @@ let retypePassLabel = document.querySelector(
  * !authenticate email and password of log in form
  **/
 logInForm.addEventListener("submit", (e) => {
-  e.preventDefault()
+  e.preventDefault();
   validate(e);
 });
 email.addEventListener("textInput", email_verify);
 password.addEventListener("textInput", pass_verify);
 
 function validate(e) {
-  signUpData.forEach((ele) => {
-     if (email.value !== ele.userEmail) {
-       errorEmail.textContent = "wrong email";
-       errorEmail.style.display = "block";
-       email.style.border = "1px solid red";
-       email.focus();
-       return;
-     } else {
-       errorEmail.style.display = "none";
-       email.style.border = "1px solid white";
-     }
-     if (password.value !== ele.userPassword) {
-       errorPass.textContent = "error password";
-       errorPass.style.display = "block";
-       password.style.border = "1px solid red";
-       password.focus();
-       return;
-     } else {
-       errorPass.style.display = "none";
-       password.style.border = "1px solid white";
-     }
-     window.location = "index.html";
-  });
-  
+  let EmailIndex = signUpData.findIndex(
+    (object) => object.userEmail === email.value
+  );
+  let passIndex = signUpData.findIndex(
+    (object) => object.userPassword === password.value
+  );
+  if (EmailIndex === -1) {
+    errorEmail.textContent = "wrong email";
+    errorEmail.style.display = "block";
+    email.style.border = "1px solid red";
+    email.focus();
+    return;
+  } else {
+    errorEmail.style.display = "none";
+    email.style.border = "1px solid white";
+  }
+  if (passIndex === -1) {
+    errorPass.textContent = "error password";
+    errorPass.style.display = "block";
+    password.style.border = "1px solid red";
+    password.focus();
+    return;
+  } else {
+    errorPass.style.display = "none";
+    password.style.border = "1px solid white";
+  }
+  if (EmailIndex !== -1 && passIndex !== -1) {
+    window.location = "index.html";
+  }
 }
 
-   
 function email_verify() {
   if (email.value.length < 9) {
     errorEmail.style.display = "block";

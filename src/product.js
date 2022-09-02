@@ -168,7 +168,7 @@ function searchForItem(data) {
       let data = await myData.json();
       form.addEventListener("keyup", () => {
         let filteredData = data.filter((product) => {
-          return product.name.toLowerCase().includes(searchInput.value);
+          return product.name.toLowerCase().includes(searchInput.value.toLowerCase());
         });
         addItems(filteredData);
       });
