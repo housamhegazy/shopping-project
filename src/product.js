@@ -2,6 +2,15 @@ let toggleBtn = document.querySelector(".toggle .fa-bars");
 let closeBtn = document.querySelector(".toggle .close");
 let menu = document.querySelector(".menu");
 let menuItems = document.querySelectorAll(".menu a");
+let basket = document.querySelector(".basket");
+
+
+// get basket items from local storage
+let ArrayOfBasket = JSON.parse(localStorage.getItem("basketInLocal")) || [];
+
+basket.querySelector("span").textContent = ArrayOfBasket.map(
+  (ele) => ele.item
+).reduce((x, y) => x + y, 0);
 
 // open and close toggle
 function sideBarMenu() {
@@ -65,7 +74,7 @@ function addItems(data) {
   container.innerHTML = data
     .map((element) => {
       let { id, imgSrc, price, name, company } = element;
-      return `<div id=${id} class="product ${company}">
+      return `<div id="product-id-${id}" class="product ${company}">
             <div class="image">
                             <div class="overlay">+</div>
                             <div class="full-screen">
@@ -93,6 +102,17 @@ function addItems(data) {
     })
     .join("");
   fullScreen();
+  let allProducts = document.querySelectorAll('.product')
+   Basket(allProducts);
+  // get quantities to elements after get array from local storage
+ 
+  let Quantities = document.querySelectorAll(".Quantity");
+  Quantities.forEach((quantity) => {
+    let search = ArrayOfBasket.find((x) => x.id === quantity.id);
+    if (search) {
+      quantity.innerHTML = search.item;
+    }
+  });
 }
 
 // full screen
@@ -229,3 +249,52 @@ document.onreadystatechange = function () {
     document.querySelector("body").style.visibility = "visible";
   }
 };
+
+
+// add to basket
+// function of Basket
+
+function Basket(products) {
+  products.forEach((product) => {
+    console.log(product);
+    let quantity = product.querySelector(".Quantity");
+    let addToBasketBtn = product.querySelector(".add");
+    let plusBtn = product.querySelector(".product .plus-minus .fa-plus");
+    let minusBtn = product.querySelector(".product .plus-minus .fa-minus");
+    console.log(minusBtn);
+    plusBtn.addEventListener("click", (e) => {
+      let search = ArrayOfBasket.find((ele) => ele.id === quantity.id);
+      if (search === undefined) {
+        ArrayOfBasket.push({
+          id: quantity.id,
+          item: 1,
+        });
+      } else {
+        search.item++;
+      }
+      update(quantity.id);
+    });
+    minusBtn.addEventListener("click", (e) => {
+      let search = ArrayOfBasket.find((ele) => ele.id === quantity.id);
+      if (search === undefined) {
+        return;
+      } else if (search.item === 0) {
+        return;
+      } else {
+        search.item--;
+      }
+      update(quantity.id);
+    });
+    function update(id) {
+      let search = ArrayOfBasket.find((x) => x.id === id);
+      document.getElementById(id).innerHTML = search.item;
+    }
+    addToBasketBtn.addEventListener("click", (e) => {
+      basket.querySelector("span").textContent = ArrayOfBasket.map(
+        (ele) => ele.item
+      ).reduce((x, y) => x + y, 0);
+      ArrayOfBasket = ArrayOfBasket.filter((x) => x.item !== 0);
+      localStorage.setItem("basketInLocal", JSON.stringify(ArrayOfBasket));
+    });
+  });
+}

@@ -10,9 +10,7 @@ document.onreadystatechange = function () {
 };
 //================================
 let signUpData = [];
-console.log(signUpData, "1");
 signUpData = JSON.parse(localStorage.getItem("signUpDataArr")) || [];
-console.log(signUpData, "2");
 //=============================================
 let toggleBtn = document.querySelector(".toggle .fa-bars");
 let closeBtn = document.querySelector(".toggle .close");

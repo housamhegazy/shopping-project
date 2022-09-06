@@ -7,6 +7,12 @@ let arrowRight = document.querySelector(".fa-arrow-right");
 let menuItems = document.querySelectorAll(".menu a");
 let basketContainer = document.querySelector(".basket .basket-container");
 let basket = document.querySelector(".basket");
+// get basket items from local storage
+let ArrayOfBasket = JSON.parse(localStorage.getItem("basketInLocal")) || [];
+
+basket.querySelector("span").textContent = ArrayOfBasket.map(
+  (ele) => ele.item
+).reduce((x, y) => x + y, 0);
 
 // open and close toggle
 function sideBarMenu() {
@@ -124,7 +130,7 @@ function addItems(data) {
   productsContainer.innerHTML = data
     .map((element) => {
       let { id, imgSrc, price, name, company } = element;
-      return `<div id=${id} class="product ${company}" data-name=${name}>
+      return `<div id="product-id-${id}" class="product ${company}" data-name=${name}>
                   <div class="image">
                     <div class="overlay">+</div>
                     <div class="full-screen">
@@ -151,6 +157,16 @@ function addItems(data) {
     })
     .join("");
   fullScreen();
+  let allProducts = document.querySelectorAll(".product");
+  Basket(allProducts);
+  // get quantities to elements after get array from local storage
+  let Quantities = document.querySelectorAll(".Quantity");
+  Quantities.forEach((quantity) => {
+    let search = ArrayOfBasket.find((x) => x.id === quantity.id);
+    if (search) {
+      quantity.innerHTML = search.item;
+    }
+  });
 }
 
 function fullScreen() {
@@ -370,40 +386,6 @@ function addCompany(data) {
   FilterBtns = document.querySelectorAll(".toggle .menu .filter ul li");
 }
 
-// // function of Basket
-// let ArrayOfBasket = [];
-// function Basket(Alldata) {
-//   let allProducts = document.querySelectorAll(".product");
-//   allProducts.forEach((product) => {
-//     let id = product.id;
-//     let name = product.dataset.name;
-//     let plusBtn = product.querySelector(".product .plus-minus .fa-plus");
-//     let minusBtn = product.querySelector(".product .plus-minus .fa-minus");
-//     plusBtn.addEventListener("click", (e) => {
-
-//       if (ArrayOfBasket.length < 1) {
-//         ArrayOfBasket.push({
-//           productId: id,
-//           productName: name,
-//           item: 0,
-//         });
-//       } else {
-//         ArrayOfBasket.forEach((ele) => {
-//           console.log(ele.productId,e.target.id)
-//           if (ele.productId === e.target.id) {
-//             ele.item += 1;
-//           }
-//         });
-//       }
-//       console.log(ArrayOfBasket);
-//     });
-
-//     minusBtn.addEventListener("click", (e) => {
-//       console.log("minus");
-//     });
-//   });
-// }
-
 let dateEle = document.querySelector("footer .date");
 let date = new Date().getFullYear();
 dateEle.textContent = date;
@@ -434,3 +416,51 @@ let moving = function () {
   });
 };
 window.addEventListener("scroll", moving);
+
+// add to basket
+// function of Basket
+
+function Basket(products) {
+  products.forEach((product) => {
+    console.log(product);
+    let quantity = product.querySelector(".Quantity");
+    let addToBasketBtn = product.querySelector(".add");
+    let plusBtn = product.querySelector(".product .plus-minus .fa-plus");
+    let minusBtn = product.querySelector(".product .plus-minus .fa-minus");
+    console.log(minusBtn);
+    plusBtn.addEventListener("click", (e) => {
+      let search = ArrayOfBasket.find((ele) => ele.id === quantity.id);
+      if (search === undefined) {
+        ArrayOfBasket.push({
+          id: quantity.id,
+          item: 1,
+        });
+      } else {
+        search.item++;
+      }
+      update(quantity.id);
+    });
+    minusBtn.addEventListener("click", (e) => {
+      let search = ArrayOfBasket.find((ele) => ele.id === quantity.id);
+      if (search === undefined) {
+        return;
+      } else if (search.item === 0) {
+        return;
+      } else {
+        search.item--;
+      }
+      update(quantity.id);
+    });
+    function update(id) {
+      let search = ArrayOfBasket.find((x) => x.id === id);
+      document.getElementById(id).innerHTML = search.item;
+    }
+    addToBasketBtn.addEventListener("click", (e) => {
+      basket.querySelector("span").textContent = ArrayOfBasket.map(
+        (ele) => ele.item
+      ).reduce((x, y) => x + y, 0);
+      ArrayOfBasket = ArrayOfBasket.filter((x) => x.item !== 0);
+      localStorage.setItem("basketInLocal", JSON.stringify(ArrayOfBasket));
+    });
+  });
+}
