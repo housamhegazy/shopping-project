@@ -256,12 +256,11 @@ document.onreadystatechange = function () {
 
 function Basket(products) {
   products.forEach((product) => {
-    console.log(product);
     let quantity = product.querySelector(".Quantity");
     let addToBasketBtn = product.querySelector(".add");
     let plusBtn = product.querySelector(".product .plus-minus .fa-plus");
     let minusBtn = product.querySelector(".product .plus-minus .fa-minus");
-    console.log(minusBtn);
+    
     plusBtn.addEventListener("click", (e) => {
       let search = ArrayOfBasket.find((ele) => ele.id === quantity.id);
       if (search === undefined) {
